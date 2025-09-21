@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
   Inicio[Inicio]
 
@@ -44,6 +45,7 @@ flowchart TD
   PuedeEliminarCobro -->|No| MostrarErrorCobro[Mostrar error]
   EliminarCobro --> Inicio
   MostrarErrorCobro --> Inicio
+```
 
   Cobros --> ClicAnadirCobro[Clic en anadir]
   ClicAnadirCobro --> AnadirCobro[Anadir]
