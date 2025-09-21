@@ -1,37 +1,53 @@
-```mermaid
 flowchart TD
-  Start([Inicio]) --> Menu[Mostrar menú / Lista]
-  Menu -->|Crear| CreateForm[Formulario: Crear]
-  Menu -->|Buscar| Search[Buscar / Filtrar]
-  Menu -->|Editar| SelectEdit[Seleccionar item a editar]
-  Menu -->|Eliminar| ConfirmDelete{Confirmar eliminación?}
-  Menu -->|Ajustes| Settings[Ajustes]
+  Inicio[Inicio]
 
-  CreateForm --> ValidateCreate{Validación OK?}
-  ValidateCreate -->|No| ShowErrorsCreate[Mostrar errores]
-  ShowErrorsCreate --> CreateForm
-  ValidateCreate -->|Sí| SaveCreate[Guardar registro]
-  SaveCreate -->|Éxito| SuccessCreate[Confirmación y volver a Lista]
-  SaveCreate -->|Error| SaveErrorCreate[Mostrar error] --> CreateForm
+  %% Cuenta
+  Inicio --> Cuenta[Cuenta]
+  Cuenta --> HacerCambios[Hacer cambios]
+  HacerCambios --> CambiosGuardados[Cambios guardados]
+  CambiosGuardados --> Volver[Volver]
+  Volver --> Inicio
 
-  SelectEdit --> EditForm[Formulario: Editar] --> ValidateEdit{Validación OK?}
-  ValidateEdit -->|No| ShowErrorsEdit[Mostrar errores] --> EditForm
-  ValidateEdit -->|Sí| SaveEdit[Guardar cambios]
-  SaveEdit -->|Éxito| SuccessEdit[Confirmación y volver a Lista]
-  SaveEdit -->|Error| SaveErrorEdit[Mostrar error] --> EditForm
+  %% Amigos
+  Inicio --> Amigos[Amigos]
+  Amigos --> VerDatosClick[Clic en ver datos]
+  VerDatosClick --> VerDatos[Ver datos de amigo]
+  VerDatos --> ClicEliminar[Clic en eliminar]
+  ClicEliminar --> PuedeEliminar{Se puede eliminar?}
+  PuedeEliminar -->|Si| Eliminar[Eliminar]
+  PuedeEliminar -->|No| MostrarErrorEliminar[Mostrar error]
+  Eliminar --> Inicio
+  MostrarErrorEliminar --> Inicio
 
-  ConfirmDelete -->|Sí| DeleteAction[Eliminar registro]
-  ConfirmDelete -->|No| CancelDelete[Cancelar y volver]
-  DeleteAction -->|Éxito| Deleted[Mostar eliminado y volver a Lista]
-  DeleteAction -->|Error| DeleteError[Mostrar error]
+  Amigos --> ClicAnadir[Clic en Anadir]
+  ClicAnadir --> VentanaAnadir[Ventana de anadir]
+  VentanaAnadir --> IntroducirID[Introducir ID]
+  IntroducirID --> AmigoAnadido[Amigo anadido]
+  AmigoAnadido --> Inicio
 
-  Search -->|Resultados| ResultList[Mostrar lista de resultados]
-  Search -->|Sin resultados| NoResults[Mostrar sin resultados]
+  %% Pagos
+  Inicio --> Pagos[Pagos]
+  Pagos --> ClicVerPago[Clic en ver pago]
+  ClicVerPago --> VerPago[Ver datos de pago]
+  VerPago --> ClicPagar[Clic en pagar]
+  ClicPagar --> Pagar[Pagar]
+  Pagar --> Pagado[Pagado]
+  Pagado --> Inicio
 
-  SuccessCreate --> Menu
-  SuccessEdit --> Menu
-  Deleted --> Menu
-  CancelDelete --> Menu
-  SaveErrorCreate --> Menu
-  SaveErrorEdit --> Menu
-```
+  %% Cobros
+  Inicio --> Cobros[Cobros]
+  Cobros --> ClicVerCobro[Clic en ver cobro]
+  ClicVerCobro --> VerCobro[Ver cobro]
+  VerCobro --> ClicEliminarCobro[Clic en eliminar cobro]
+  ClicEliminarCobro --> PuedeEliminarCobro{Se puede eliminar?}
+  PuedeEliminarCobro -->|Si| EliminarCobro[Eliminar]
+  PuedeEliminarCobro -->|No| MostrarErrorCobro[Mostrar error]
+  EliminarCobro --> Inicio
+  MostrarErrorCobro --> Inicio
+
+  Cobros --> ClicAnadirCobro[Clic en anadir]
+  ClicAnadirCobro --> AnadirCobro[Anadir]
+  AnadirCobro --> InsertarDatos[Insertar datos]
+  InsertarDatos --> InsertarParticipantes[Insertar participantes]
+  InsertarParticipantes --> CobroAgregado[Cobro agregado]
+  CobroAgregado --> Inicio
