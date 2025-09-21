@@ -22,11 +22,11 @@ flowchart TD
 
   ConfirmDelete -->|Sí| DeleteAction[Eliminar registro]
   ConfirmDelete -->|No| CancelDelete[Cancelar y volver]
-  DeleteAction -->|Éxito| Deleted[Mostar "Eliminado" y volver a Lista]
+  DeleteAction -->|Éxito| Deleted[Mostar eliminado y volver a Lista]
   DeleteAction -->|Error| DeleteError[Mostrar error]
 
   Search -->|Resultados| ResultList[Mostrar lista de resultados]
-  Search -->|Sin resultados| NoResults[Mostrar "sin resultados"]
+  Search -->|Sin resultados| NoResults[Mostrar sin resultados]
 
   SuccessCreate --> Menu
   SuccessEdit --> Menu
