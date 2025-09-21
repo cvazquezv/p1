@@ -3,50 +3,40 @@ flowchart TD
   Inicio[Inicio]
 
   %% Cuenta
-  Inicio --> Cuenta[Cuenta]
-  Cuenta --> HacerCambios[Hacer cambios]
-  HacerCambios --> CambiosGuardados[Cambios guardados]
-  CambiosGuardados --> Volver[Volver]
-  Volver --> Inicio
+  Inicio -->|Entrar en cuenta| Cuenta[Cuenta]
+  Cuenta -->|Hacer cambios| CambiosGuardados[Cambios guardados]
+  CambiosGuardados -->|Volver| Inicio
 
   %% Amigos
-  Inicio --> Amigos[Amigos]
-  Amigos --> VerDatosClick[Clic en ver datos]
-  VerDatosClick --> VerDatos[Ver datos de amigo]
-  VerDatos --> ClicEliminar[Clic en eliminar]
-  ClicEliminar --> EliminarOK[Eliminar]
-  ClicEliminar --> ErrorEliminar[Mostrar error]
-  EliminarOK --> Inicio
+  Inicio -->|Ir a amigos| Amigos[Amigos]
+  Amigos -->|Clic en ver datos| VerDatos[Ver datos de amigo]
+  VerDatos -->|Clic en eliminar| PuedeEliminar{¿Se puede eliminar?}
+  PuedeEliminar -->|Sí| Eliminar[Eliminar]
+  PuedeEliminar -->|No| ErrorEliminar[Mostrar error]
+  Eliminar --> Inicio
   ErrorEliminar --> Inicio
 
-  Amigos --> ClicAnadir[Clic en Añadir]
-  ClicAnadir --> VentanaAnadir[Ventana de añadir]
-  VentanaAnadir --> IntroducirID[Introducir ID]
-  IntroducirID --> AmigoAnadido[Amigo añadido]
+  Amigos -->|Clic en Añadir| VentanaAnadir[Ventana de añadir]
+  VentanaAnadir -->|Introducir ID| AmigoAnadido[Amigo añadido]
   AmigoAnadido --> Inicio
 
   %% Pagos
-  Inicio --> Pagos[Pagos]
-  Pagos --> ClicVerPago[Clic en ver pago]
-  ClicVerPago --> VerPago[Ver datos de pago]
-  VerPago --> ClicPagar[Clic en pagar]
-  ClicPagar --> Pagar[Pagar]
+  Inicio -->|Ir a pagos| Pagos[Pagos]
+  Pagos -->|Clic en ver pago| VerPago[Ver datos de pago]
+  VerPago -->|Clic en pagar| Pagar[Pagar]
   Pagar --> Pagado[Pagado]
   Pagado --> Inicio
 
   %% Cobros
-  Inicio --> Cobros[Cobros]
-  Cobros --> ClicVerCobro[Clic en ver cobro]
-  ClicVerCobro --> VerCobro[Ver cobro]
-  VerCobro --> ClicEliminarCobro[Clic en eliminar cobro]
-  ClicEliminarCobro --> EliminarCobro[Eliminar]
-  ClicEliminarCobro --> ErrorCobro[Mostrar error]
+  Inicio -->|Ir a cobros| Cobros[Cobros]
+  Cobros -->|Clic en ver cobro| VerCobro[Ver cobro]
+  VerCobro -->|Clic en eliminar cobro| PuedeEliminarCobro{¿Se puede eliminar?}
+  PuedeEliminarCobro -->|Sí| EliminarCobro[Eliminar]
+  PuedeEliminarCobro -->|No| ErrorCobro[Mostrar error]
   EliminarCobro --> Inicio
   ErrorCobro --> Inicio
 
-  Cobros --> ClicAnadirCobro[Clic en Añadir]
-  ClicAnadirCobro --> AnadirCobro[Añadir]
-  AnadirCobro --> InsertarDatos[Insertar datos]
-  InsertarDatos --> InsertarParticipantes[Insertar participantes]
-  InsertarParticipantes --> CobroAgregado[Cobro agregado]
+  Cobros -->|Clic en Añadir| AnadirCobro[Añadir]
+  AnadirCobro -->|Insertar datos| InsertarDatos[Datos insertados]
+  InsertarDatos -->|Insertar participantes| CobroAgregado[Cobro agregado]
   CobroAgregado --> Inicio
