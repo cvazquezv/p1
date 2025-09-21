@@ -3,7 +3,7 @@ flowchart TD
   Inicio[Inicio]
 
   %% Cuenta
-  Inicio --> Cuenta[Cuenta]
+  Inicio --> |Clic en Cuenta| Cuenta[Cuenta]
   Cuenta --> HacerCambios[Hacer cambios]
   HacerCambios --> CambiosGuardados[Cambios guardados]
   CambiosGuardados --> Volver[Volver]
